@@ -3,7 +3,7 @@
 #define INCLUDE_TPQUEUE_H_
 
 template<typename T, int size>
-class TPQueue {
+ class TPQueue {
     private:
     T array[100];
     int first, last;
