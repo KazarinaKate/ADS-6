@@ -5,24 +5,21 @@
 template<typename T, int size>
 class TPQueue {
  private:
-  T arr[size];
-  int tSize = 0;
+  T ar[size] = { 0 };
+  int first, last;
 
  public:
-  void push(T item) {
-    if (tSize >= size) throw "Error: The queue is full";
-    for (int i = tSize++; i >= 0; i--)
-      if (i > 0 && ar[i - 1].prior >= item.prior) {
-        ar[i] = ar[i - 1];
-      } else {
-        ar[i] = item;
-        break;
-      }
+  TPQueue() : first(0), last(0) {}
+  void push(T temp) {
+    int l = last++;
+    while ((--l >= first) && (ar[l % size].prior < temp.prior)) {
+      ar[(i + 1) % size] = ar[i % size];
+    }
+    ar[(i + 1) % size] = temp;
   }
   T pop() {
-    if (tSize <= 0) throw "Error: The queue is empty";
-    return ar[--tSize];
-  }
+  return ar[(first++) % size];
+}
 };
 
 struct SYM {
