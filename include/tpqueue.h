@@ -5,20 +5,20 @@
 template<typename T, int size>
 class TPQueue {
  private:
-  T ar[size] = { 0 };
-  int first, last;
+  T ar[size] = {0};
+  int a, b;
 
  public:
-  TPQueue() : first(0), last(0) {}
+  TPQueue() : a(0), b(0) {}
   void push(T temp) {
-    int l = last++;
-    while ((--l >= first) && (ar[l % size].prior < temp.prior)) {
-      ar[(i + 1) % size] = ar[i % size];
+    int l = b++;
+    while ((--l >= a) && (ar[l % size].prior < temp.prior)) {
+      ar[(l + 1) % size] = ar[l % size];
     }
-    ar[(i + 1) % size] = temp;
+    ar[(l + 1) % size] = temp;
   }
   T pop() {
-  return ar[(first++) % size];
+  return ar[(a++) % size];
 }
 };
 
